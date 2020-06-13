@@ -13,4 +13,6 @@ access_token: …
 
 Note: ``owner`` may point to an organization for which you want to run the migration.
 
+Note: Consider that you might have open pull requests. Removing a branch will close these without merge so you might want to switch the base head to `main` before removing the `master` branch.
+
 Then, run ``rename-to-main.rb``.
