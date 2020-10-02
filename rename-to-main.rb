@@ -3,6 +3,7 @@ require 'octokit'
 require 'yaml'
 require 'set'
 require 'json'
+require 'fileutils'
 
 unless File.exist?('config.yaml')
   raise LoadError("File config.yaml does not exist")
@@ -26,7 +27,7 @@ def rename_master_to_main(owner, client, repositories)
 
       puts "Performing rename for #{repo_name}"
 
-      `mkdir -p work/#{repo_name}`
+      FileUtils.mkdir_p "work/#{repo_name}"
       `git clone #{repo.clone_url} work/#{owner}/#{repo.name}`
       `git --git-dir work/#{owner}/#{repo.name}/.git branch -m master main`
       `git --git-dir work/#{owner}/#{repo.name}/.git push -u origin main`
